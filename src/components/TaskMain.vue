@@ -16,8 +16,8 @@
                         <h5 v-if="taskList.length == 0">No hay tareas planificadas</h5>
                         <ul class="list-group">
                             <li v-for="(task, index) of taskList" :key="index" class="list-group-item d-flex justify-content-between">
-                                <span class="cursor">
-                                    <i class="far fa-circle"></i>
+                                <span class="cursor" v-on:click="updateTask(task, index)" v-bind:class="{'text-success' : task.state}">
+                                    <i v-bind:class="[task.state ? 'fas fa-check-circle' : 'far fa-circle']"></i>
                                 </span>
                                 {{task.name}}
                                 <span class="text-danger cursor" v-on:click="deleteTask(index)">
@@ -52,6 +52,9 @@
             },
             deleteTask(index){
                 this.taskList.splice(index, 1)
+            },
+            updateTask(task, index){
+                this.taskList[index].state = !task.state
             }
         }
     }
