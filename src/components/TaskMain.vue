@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="display 4 text-center">Listado de Tareas</h1>
+        <h1 class="display 4 text-center pt-3">Listado de Tareas</h1>
         <hr>
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
@@ -13,13 +13,14 @@
                             </div>
                         </div>
                         <br>
+                        <h5 v-if="taskList.length == 0">No hay tareas planificadas</h5>
                         <ul class="list-group">
                             <li v-for="(task, index) of taskList" :key="index" class="list-group-item d-flex justify-content-between">
                                 <span class="cursor">
                                     <i class="far fa-circle"></i>
                                 </span>
                                 {{task.name}}
-                                <span class="text-danger cursor">
+                                <span class="text-danger cursor" v-on:click="deleteTask(index)">
                                     <i class="fas fa-trash-alt"></i>
                                 </span>
                             </li>
@@ -48,6 +49,9 @@
                 }
                 this.taskList.push(task);
                 this.task = '';
+            },
+            deleteTask(index){
+                this.taskList.splice(index, 1)
             }
         }
     }
