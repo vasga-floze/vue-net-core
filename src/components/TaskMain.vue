@@ -7,18 +7,18 @@
                 <div class="card mt-4">
                     <div class="card-body">
                         <div class="input-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Agregar tarea">
+                            <input type="text" v-model="task" class="form-control form-control-lg" placeholder="Agregar tarea">
                             <div class="input-group-append">
-                                <button class="btn btn-success btn-lg">Agregar</button>
+                                <button v-on:click="addTask()" class="btn btn-success btn-lg">Agregar</button>
                             </div>
                         </div>
                         <br>
                         <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between">
+                            <li v-for="(task, index) of taskList" :key="index" class="list-group-item d-flex justify-content-between">
                                 <span class="cursor">
                                     <i class="far fa-circle"></i>
                                 </span>
-                                Hacer la tarea
+                                {{task.name}}
                                 <span class="text-danger cursor">
                                     <i class="fas fa-trash-alt"></i>
                                 </span>
@@ -33,7 +33,23 @@
 
 <script>
     export default {
-        name: 'TaskMain'
+        name: 'TaskMain',
+        data() {
+            return {
+                task: '',
+                taskList: []
+            }
+        },
+        methods: {
+            addTask(){
+                const task = {
+                    name: this.task,
+                    state: false
+                }
+                this.taskList.push(task);
+                this.task = '';
+            }
+        }
     }
 </script>
 
