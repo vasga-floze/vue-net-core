@@ -12,6 +12,15 @@
                                 <button class="btn btn-success btn-lg">Agregar</button>
                             </div>
                         </div>
+                        <br>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span>
+                                    <i class="far fa-circle"></i>
+                                </span>
+                                Hacer la tarea
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
